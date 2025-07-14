@@ -1,6 +1,9 @@
 <?php
 require_once '../inc/fonctions.php';
+session_start();
 
+$ID = $_SESSION['id'];
+$nom= getNom($ID);
 $categorie = isset($_GET['categorie']) ? $_GET['categorie'] : 'tous';
 $categories = getAllCategories();
 $emprunts = [];
@@ -36,8 +39,25 @@ elseif ($categorie !== '')
   <meta charset="UTF-8">
   <title>Accueil</title>
   <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body class="bg-light text-dark">
+
+<nav class="navbar navbar-expand-lg bg-warning bg-gradient shadow-sm mb-5">
+  <div class="container">
+    <a class="navbar-brand fw-bold text-dark" href="profil.php.php"><?php echo $nom ?></a>
+    <button class="navbar-toggler text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link fw-semibold text-dark" href="deconnexion.php">Déconnexion</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
 <div class="container py-5">
   <h2 class="mb-4">Accueil - Objets par catégorie</h2>

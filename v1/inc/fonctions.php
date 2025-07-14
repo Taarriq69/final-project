@@ -22,6 +22,26 @@ function get_all_mail()
     }
 }
 
+function getNom($id)
+{
+    $connect = dbconnect();
+    $req = "SELECT nom FROM emprunts_membre WHERE id_membre = '$id'";
+    $result = mysqli_query($connect, $req);
+    if (!$result) 
+    {
+        die('Erreur de requête : ' . mysqli_error($connect));
+    }
+    else 
+    {
+        $nom;
+        while ($row = mysqli_fetch_assoc($result)) 
+        {
+            $nom = $row['nom'];
+        }
+        return $nom;
+    }
+}
+
 function checkmdp($email,$mdp)
 {
     $connect = dbconnect();

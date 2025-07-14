@@ -96,6 +96,7 @@ elseif ($categorie !== '')
             <th>Catégorie</th>
             <th>Propriétaire</th>
             <th>Statut</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -117,6 +118,13 @@ elseif ($categorie !== '')
                   </span>
                 <?php endif; ?>
               </td>
+              <td>
+              <?php if ($obj['date_retour'] === null): ?>
+                <a href="emprunter.php?id_objet=<?= $obj['id_objet'] ?>" class="btn btn-sm btn-primary">Emprunter</a>
+              <?php else: ?>
+                <button class="btn btn-sm btn-secondary" disabled>Indisponible</button>
+              <?php endif; ?>
+            </td>
             </tr>
           <?php endforeach; ?>
         </tbody>

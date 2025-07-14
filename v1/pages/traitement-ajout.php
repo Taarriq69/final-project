@@ -21,10 +21,12 @@ mysqli_query($connect, $req_objet);
 $id_objet = mysqli_insert_id($connect);
 
 
-foreach ($_FILES['images']['name'] as $index => $image_name) {
+foreach ($_FILES['images']['name'] as $index => $image_name) 
+{
     $image_tmp = $_FILES['images']['tmp_name'][$index];
     $image_name = basename($image_name);
-    $image_path = __DIR__ . '/../assets/upload/' . $image_name;
+    $image_path ='../assets/upload/' . $image_name;
+
 
 
     move_uploaded_file($image_tmp, $image_path);
@@ -36,7 +38,6 @@ foreach ($_FILES['images']['name'] as $index => $image_name) {
     ";
     mysqli_query($connect, $req_image);
 }
-
 
 header("Location: accueil.php?ajout=ok");
 exit;

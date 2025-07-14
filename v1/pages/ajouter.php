@@ -6,16 +6,28 @@ $categories = getAllCategories();
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Ajouter un objet</title>
-  <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body class="bg-light text-dark">
 
-<div class="container py-5">
-  <h2 class="mb-4">Ajouter un nouvel objet</h2>
+<nav class="navbar navbar-dark bg-dark shadow-sm mb-4">
+  <div class="container">
+    <a href="accueil.php" class="navbar-brand">
+      ← Retour à l'accueil
+    </a>
+    <span class="navbar-text text-warning fw-bold">
+      Ajouter un objet
+    </span>
+  </div>
+</nav>
 
-  <form method="POST" enctype="multipart/form-data" class="p-4 bg-white border rounded shadow-sm" action="traitement-ajout.php">
+<div class="container">
+  <h2 class="mb-4 text-center">Ajouter un nouvel objet</h2>
+
+  <form method="POST" enctype="multipart/form-data" action="traitement-ajout.php" class="p-4 bg-white border rounded shadow-sm">
     
     <div class="mb-3">
       <label for="nom" class="form-label">Nom de l'objet</label>
@@ -42,8 +54,11 @@ $categories = getAllCategories();
 
     <div class="d-flex justify-content-between">
       <a href="accueil.php" class="btn btn-secondary">← Retour</a>
-      <button type="submit" class="btn btn-primary">Enregistrer</button>
+      <button type="submit" class="btn btn-warning text-dark fw-bold">Enregistrer</button>
     </div>
 
   </form>
-</di
+</div>
+
+</body>
+</html>

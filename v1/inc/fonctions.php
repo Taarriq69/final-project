@@ -194,7 +194,7 @@ function getImagesObjet($id)
 
     while ($row = mysqli_fetch_assoc($res)) 
     {
-        $images[] = $row['nom_image'];
+        $images[] = '../assets/upload/'.$row['nom_image'];
     }
 
     return $images;

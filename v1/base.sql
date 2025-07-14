@@ -44,10 +44,10 @@ CREATE TABLE emprunts_emprunt (
 );
 
 INSERT INTO emprunts_membre (nom, date_naissance, genre, email, ville, mdp, image_profil) VALUES
-('Alice', '1990-05-12', 'Femme', 'alice@gmail.com', 'Antananarivo', 'mdpAlice', 'alice.jpg'),
-('Bob', '1988-11-22', 'Homme', 'bob@gmail.com', 'Toamasina', 'mdpBob', 'bob.jpg'),
-('Charlie', '1995-08-01', 'Homme', 'charlie@gmail.com', 'Fianarantsoa', 'mdpCharlie', 'charlie.jpg'),
-('Dina', '2000-03-30', 'Autre', 'dina@gmail.com', 'Mahajanga', 'mdpDina', 'dina.jpg');
+('Alice', '1990-05-12', 'Femme', 'alice@gmail.com', 'Antananarivo', 'mdpAlice', 'default.jpg'),
+('Bob', '1988-11-22', 'Homme', 'bob@gmail.com', 'Toamasina', 'mdpBob', 'default.jpg'),
+('Charlie', '1995-08-01', 'Homme', 'charlie@gmail.com', 'Fianarantsoa', 'mdpCharlie', 'default.jpg'),
+('Dina', '2000-03-30', 'Autre', 'dina@gmail.com', 'Mahajanga', 'mdpDina', 'default.jpg');
 
 
 INSERT INTO emprunts_categorie_objet (nom_categorie) VALUES

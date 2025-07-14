@@ -62,7 +62,7 @@ elseif ($categorie !== '')
 
     <div class="d-flex align-items-center">
       <span class="username"><?= htmlspecialchars($nom) ?></span>
-      <img src="../uploads/profils/<?= htmlspecialchars($photo ?: 'default.jpg') ?>" alt="Profil" class="rounded-circle" width="40" height="40" />
+      <img src="../assets/upload/<?= htmlspecialchars($photo ?: 'default.jpg') ?>" alt="Profil" class="rounded-circle" width="40" height="40" />
     </div>
   </div>
 </nav>

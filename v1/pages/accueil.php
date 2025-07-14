@@ -70,9 +70,9 @@ elseif ($categorie !== '')
 <div class="container py-5">
   <h2>Objets par catégorie</h2>
 
-  <form method="GET" class="mb-4 d-flex flex-wrap align-items-center gap-3">
+  <form method="GET" class="mb-4 d-flex align-items-center gap-3">
     <label for="categorie" class="form-label mb-0">Choisir une catégorie :</label>
-    <select name="categorie" id="categorie" class="form-select" onchange="this.form.submit()">
+    <select name="categorie" id="categorie" class="form-select w-auto d-inline-block" onchange="this.form.submit()">
       <option value="tous" <?= ($categorie === 'tous') ? 'selected' : '' ?>>Tous</option>
       <?php foreach ($categories as $cat): ?>
         <option value="<?= htmlspecialchars($cat) ?>" <?= ($categorie === $cat) ? 'selected' : '' ?>>
@@ -80,6 +80,11 @@ elseif ($categorie !== '')
         </option>
       <?php endforeach; ?>
     </select>
+    <a href="ajouter.php">
+    <button type="button" class="btn btn-warning ms-2">
+        Ajouter un objet
+      </button>
+    </a>
   </form>
 
   <?php if (!empty($emprunts)): ?>

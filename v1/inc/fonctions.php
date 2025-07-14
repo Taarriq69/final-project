@@ -114,6 +114,27 @@ function getAllEmprunts($nomCategorie)
     return $emprunts;
 }
 
+function getIDCategorie($nom_categorie)
+{
+    $connect = dbconnect();
+    $req = "SELECT id_categorie FROM emprunts_categorie_objet WHERE nom_categorie = '$nom_categorie';";
+    $result = mysqli_query($connect,$req);
+    if (!$result) 
+    {
+        die('Erreur de requête : ' . mysqli_error($connect));
+    }
+    else 
+    {
+        $id;
+        while ($row = mysqli_fetch_assoc($result)) 
+        {
+            $id = $row['id_categorie'];
+        }
+        return $id;
+    }
+
+}
+
 
 function getAllCategories()
 {
@@ -140,7 +161,8 @@ function getPhoto($id)
     $connect = dbconnect();
     $req = "SELECT image_profil FROM emprunts_membre WHERE id_membre = $id";
     $res = mysqli_query($connect, $req);
-    if ($res && $row = mysqli_fetch_assoc($res)) {
+    if ($res && $row = mysqli_fetch_assoc($res)) 
+    {
         return $row['image_profil'];
     }
     return null;

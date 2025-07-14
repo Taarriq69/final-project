@@ -16,12 +16,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     } 
     else 
     {
-        $message = "❌ Email ou mot de passe incorrect.";
+        $message = "Email ou mot de passe incorrect.";
     }
 } 
 else 
 {
-    $message = "❌ Requête invalide.";
+    $message = "Requête invalide.";
 }
 
 header("Location: ../pages/login.php?message=" . urlencode($message));

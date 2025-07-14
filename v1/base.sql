@@ -128,4 +128,4 @@ FROM emprunts_objet o
 JOIN emprunts_categorie_objet c ON o.id_categorie = c.id_categorie
 JOIN emprunts_membre m ON o.id_membre = m.id_membre
 LEFT JOIN emprunts_emprunt e 
-    ON o.id_objet = e.id_objet AND e.date_retour IS NULL;
+    ON o.id_objet = e.id_objet;

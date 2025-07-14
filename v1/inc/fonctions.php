@@ -65,4 +65,48 @@ function getID($email)
     }
 }
 
+
+function getAllEmprunts($nomCategorie)
+{
+    $connect = dbconnect();
+    $req = "SELECT * FROM vue_objets_emprunt WHERE nom_categorie = '$nomCategorie' ORDER BY nom_objet";
+    $result = mysqli_query($connect, $req);
+    if (!$result)
+    {
+        die('Erreur de requête : ' . mysqli_error($connect));
+    }
+    else
+    {
+        $emprunts = [];
+        while ($row = mysqli_fetch_assoc($result))
+        {
+            $emprunts[] = [
+                'nom_objet' => $row['nom_objet'],
+                'nom_categorie' => $row['nom_categorie'],
+                'proprietaire' => $row['proprietaire'],
+                'date_retour' => $row['date_retour']
+            ];
+        }
+        return $emprunts;
+    }
+}
+function getAllCategories()
+{
+    $connect = dbconnect();
+    $req = "SELECT nom_categorie FROM emprunts_categorie_objet ORDER BY nom_categorie";
+    $result = mysqli_query($connect, $req);
+    if (!$result) 
+    {
+        die('Erreur de requête : ' . mysqli_error($connect));
+    }
+    else 
+    {
+        $categories = [];
+        while ($row = mysqli_fetch_assoc($result)) 
+        {
+            $categories[] = $row['nom_categorie'];
+        }
+        return $categories;
+    }
+}
 ?>

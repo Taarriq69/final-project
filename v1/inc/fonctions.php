@@ -89,27 +89,32 @@ function getID($email)
 function getAllEmprunts($nomCategorie)
 {
     $connect = dbconnect();
+    $nomCategorie = mysqli_real_escape_string($connect, $nomCategorie);
+
     $req = "SELECT * FROM vue_objets_emprunt WHERE nom_categorie = '$nomCategorie' ORDER BY nom_objet";
     $result = mysqli_query($connect, $req);
-    if (!$result)
+
+    if (!$result) 
     {
         die('Erreur de requête : ' . mysqli_error($connect));
     }
-    else
+
+    $emprunts = [];
+    while ($row = mysqli_fetch_assoc($result)) 
     {
-        $emprunts = [];
-        while ($row = mysqli_fetch_assoc($result))
-        {
-            $emprunts[] = [
-                'nom_objet' => $row['nom_objet'],
-                'nom_categorie' => $row['nom_categorie'],
-                'proprietaire' => $row['proprietaire'],
-                'date_retour' => $row['date_retour']
-            ];
-        }
-        return $emprunts;
+        $emprunts[] = [
+            'id_objet' => $row['id_objet'], 
+            'nom_objet' => $row['nom_objet'],
+            'nom_categorie' => $row['nom_categorie'],
+            'proprietaire' => $row['proprietaire'],
+            'date_retour' => $row['date_retour']
+        ];
     }
+
+    return $emprunts;
 }
+
+
 function getAllCategories()
 {
     $connect = dbconnect();
@@ -129,4 +134,72 @@ function getAllCategories()
         return $categories;
     }
 }
+
+function getPhoto($id)
+{
+    $connect = dbconnect();
+    $req = "SELECT image_profil FROM emprunts_membre WHERE id_membre = $id";
+    $res = mysqli_query($connect, $req);
+    if ($res && $row = mysqli_fetch_assoc($res)) {
+        return $row['image_profil'];
+    }
+    return null;
+}
+
+function getFicheObjet($id)
+{
+    $connect = dbconnect();
+    $id = intval($id);
+
+    $req = "SELECT o.nom_objet, c.nom_categorie, m.nom AS proprietaire
+            FROM emprunts_objet o
+            JOIN emprunts_categorie_objet c ON o.id_categorie = c.id_categorie
+            JOIN emprunts_membre m ON o.id_membre = m.id_membre
+            WHERE o.id_objet = $id";
+
+    $res = mysqli_query($connect, $req);
+    return mysqli_fetch_assoc($res);
+}
+
+function getImagesObjet($id)
+{
+    $connect = dbconnect();
+    $id = intval($id);
+
+    $req = "SELECT nom_image FROM emprunts_images_objet WHERE id_objet = $id";
+    $res = mysqli_query($connect, $req);
+    $images = [];
+
+    while ($row = mysqli_fetch_assoc($res)) 
+    {
+        $images[] = $row['nom_image'];
+    }
+
+    return $images;
+}
+
+function getHistoriqueEmprunts($id)
+{
+    $connect = dbconnect();
+    $id = intval($id);
+
+    $req = "SELECT e.date_emprunt, e.date_retour, m.nom AS emprunteur
+            FROM emprunts_emprunt e
+            JOIN emprunts_membre m ON e.id_membre = m.id_membre
+            WHERE e.id_objet = $id
+            ORDER BY e.date_emprunt DESC";
+
+    $res = mysqli_query($connect, $req);
+    $hist = [];
+
+    while ($row = mysqli_fetch_assoc($res)) 
+    {
+        $hist[] = $row;
+    }
+
+    return $hist;
+}
+
+
+
 ?>

@@ -15,11 +15,11 @@
         <div class="card-body">
           <h2 class="text-center mb-4">Inscription</h2>
 
-          <?php if ($message): ?>
-            <div class="alert alert-info"><?= $message ?></div>
+          <?php if (isset($_GET['message'])): ?>
+            <div class="alert alert-info"><?= htmlspecialchars($_GET['message']) ?></div>
           <?php endif; ?>
 
-          <form method="POST" enctype="multipart/form-data">
+          <form method="POST" action="traitement-inscription.php" enctype="multipart/form-data">
             <div class="mb-3">
               <label for="nom" class="form-label">Nom complet</label>
               <input type="text" class="form-control" name="nom" required>
@@ -55,8 +55,12 @@
               <input type="password" class="form-control" name="mdp" required>
             </div>
 
-            <div class="d-grid">
+            <div class="d-grid mb-3">
               <button type="submit" class="btn btn-primary">S'inscrire</button>
+            </div>
+
+            <div class="text-center">
+              <small>Déjà un compte ? <a href="login.php">Se connecter</a></small>
             </div>
           </form>
 

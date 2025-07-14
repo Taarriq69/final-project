@@ -115,3 +115,17 @@ INSERT INTO emprunts_emprunt (id_objet, id_membre, date_emprunt, date_retour) VA
 (27, 2, '2025-07-08', NULL),
 (32, 1, '2025-07-09', '2025-07-13'),
 (38, 2, '2025-07-10', NULL);
+
+CREATE VIEW vue_objets_emprunt AS
+SELECT 
+    o.id_objet,
+    o.nom_objet,
+    c.nom_categorie,
+    m.nom AS proprietaire,
+    e.date_emprunt,
+    e.date_retour
+FROM emprunts_objet o
+JOIN emprunts_categorie_objet c ON o.id_categorie = c.id_categorie
+JOIN emprunts_membre m ON o.id_membre = m.id_membre
+LEFT JOIN emprunts_emprunt e 
+    ON o.id_objet = e.id_objet AND e.date_retour IS NULL;
